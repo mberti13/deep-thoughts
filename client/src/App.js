@@ -1,4 +1,4 @@
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, HttpLink } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import React from 'react';
 
 
@@ -8,26 +8,25 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 
 // ! help establish link from front to backend at graphql endpoint
-const htppLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+const httpLink = createHttpLink({
+  uri: '/graphql',
 });
 
 const client = new ApolloClient({
-  link: HttpLink,
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
 function App() {
   return (
-    // wrapping jsx in apollo provider, allows access to api server
     <ApolloProvider client={client}>
-    <div className='flex-column justify-flex-start min-100-vh'>
-      <Header />
-      <div className='container'>
-        <Home />
+      <div className="flex-column justify-flex-start min-100-vh">
+        <Header />
+        <div className="container">
+          <Home />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
     </ApolloProvider>
   );
 }
